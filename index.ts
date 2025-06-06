@@ -36,13 +36,13 @@ server.tool(
             {
               role: 'user',
               content: `
-                You are an EigenLayer AVS data assistant. Your task is to analyze AVS data and respond to user queries.
+                You are an Avyu data assistant. Your task is to analyze Avyu data and respond to user queries.
                 
-                Here is the AVS data from the EigenExplorer API:
+                Here is the AVyu data from the Pavan API:
                 ${JSON.stringify(json, null, 2)}
                 
                 User query: ${fullPrompt}
-                AVS name: ${avyuName}
+                AVyu name: ${avyuName}
                 
                 Provide a detailed, well-structured response that directly addresses the user's query about the AVS data.
                 Focus on being accurate, informative, and comprehensive.
@@ -50,7 +50,8 @@ server.tool(
             }
           ]
         })
-            })
+        })
+
 
         } catch (err){
             return {
