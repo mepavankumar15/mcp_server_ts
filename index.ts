@@ -51,7 +51,15 @@ server.tool(
           ]
         })
         })
-
+        const claudeJson = await claudeResponse.json()
+        return {
+            content: [
+                {
+                    type: "text",
+                    text: `${claudeJson.content[0].text}`,
+                },
+            ],
+        };
 
         } catch (err){
             return {
@@ -65,3 +73,6 @@ server.tool(
         }
     }
 )
+
+const transport = new StdioServerTransport();
+await server.connect(transport);
