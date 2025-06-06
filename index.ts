@@ -21,6 +21,15 @@ server.tool(
                     'X-API-TOKEN': process.env.EIGEN_EXPLORER_API_KEY || '',
                 }
             })
+            const json = await response.json()
+            const claudeResponse = await fetch("https://api.anthropic.com/v1/messages",{
+                method: 'POST',
+                headers:{
+                    'Content-Type': 'application/json',
+                    'x-api-key': process.env.CLAUDE_API_KEY || '',
+                    'anthropic-version' : '2023-06-01'
+                }
+            })
 
         } catch (err){
             return {
