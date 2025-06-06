@@ -28,7 +28,28 @@ server.tool(
                     'Content-Type': 'application/json',
                     'x-api-key': process.env.CLAUDE_API_KEY || '',
                     'anthropic-version' : '2023-06-01'
-                }
+                },
+                body: JSON.stringify({
+          model: 'claude-3-7-sonnet-20250219',
+          max_tokens: 1024,
+          messages: [
+            {
+              role: 'user',
+              content: `
+                You are an EigenLayer AVS data assistant. Your task is to analyze AVS data and respond to user queries.
+                
+                Here is the AVS data from the EigenExplorer API:
+                ${JSON.stringify(json, null, 2)}
+                
+                User query: ${fullPrompt}
+                AVS name: ${avyuName}
+                
+                Provide a detailed, well-structured response that directly addresses the user's query about the AVS data.
+                Focus on being accurate, informative, and comprehensive.
+              `
+            }
+          ]
+        })
             })
 
         } catch (err){
